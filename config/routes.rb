@@ -5,7 +5,6 @@ Nuit2011::Application.routes.draw do
   resources :budgets
 
   get "home/index"
-
   devise_for :users
   root :to => "home#index"
 
