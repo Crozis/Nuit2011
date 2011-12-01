@@ -4,6 +4,13 @@
   %b Creator:
   = @event.creator_id
 %p
+  Votre budget
+  = current_user.event_budget(@event)
+%p
+  %b Budget total:
+  = @event.budget
+
+%p
   %b Victim:
   = @event.victim
 %p

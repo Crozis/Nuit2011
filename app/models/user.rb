@@ -9,4 +9,8 @@ class User < ActiveRecord::Base
   
   has_many :events, :foreign_key => "creator_id"
   has_many :budgets
+
+  def event_budget(event)
+    Budget.where(:event_id => event.id, :user_id => self).first.amount
+  end
 end

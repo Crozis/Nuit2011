@@ -3,7 +3,6 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = current_user.events
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @events }
@@ -25,7 +24,6 @@ class EventsController < ApplicationController
   # GET /events/new.json
   def new
     @event = Event.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @event }
@@ -41,6 +39,7 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(params[:event])
+    Budget.create(:user => current_user, :event => @event, :amount => 0)
     
     UserMailer.send_email(current_user).deliver
     respond_to do |format|
