@@ -19,6 +19,7 @@ group :development do
   gem 'ruby-debug19', :require => 'ruby-debug'
 end
 
+gem "mail"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
