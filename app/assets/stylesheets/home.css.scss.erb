@@ -1,72 +1,20 @@
-// Place all the styles related to the home controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-@import 'base';
+html {
+  background-color: #fff5fb;
+  background-image: url(<%= asset_path 'gift2.png' %>);
+  background-repeat: no-repeat;
+  background-position: 0% 100%;
+  height: 100%;
+}
 
 body {
-	margin: auto;
-  max-width: 70em;
-  background-color: #e0e5f7;
+  font-size: 1.1em;
+  margin: 0;
+  padding: 0;
   background-image: url(<%= asset_path 'rag.png' %>);
   background-repeat: repeat-x;
 }
 
-header {
-  .top {
-    display: table;
-    h1#logo {
-      display: table-cell;
-      vertical-align: middle;
-      text-align:center;
-      font-size: 4em;
-      font-weight: normal;
-      a {
-        text-decoration: none;
-      }
-    }
-  }
-	img {
-		width: 10em;
-      display: table-cell;
-	}
-}
-
-nav ul {
-	display			: table;
-	padding-left: 0;
-	width: 100%;
-	li {
-    a {
-      color: #890101;
-      font-size: 1.1em;
-      display: inline-block;
-      text-align: center;
-      text-decoration: none;
-      border-bottom: 1px solid #AAA;
-      //border-top: 1px solid #AAA;
-	   	padding-bottom: 0.5em;
-  		padding-top: 0.5em;
-      width: 98%;
-      font-weight: bold;
-      text-transform: uppercase;
-      text-shadow: rgba(255, 255, 255, 0.796875) 0px 1px 0px;
-      @include bshadow-out(0px, 1px, 0, #EEE);
-    }
-    a:hover {
-      background-color: transparent;
-      border-bottom: 1px solid #777;
-      //border-top: 1px solid #777;
-      color: #333;
-      cursor: pointer;
-    }
-		text-align			: center;
-		display					: table-cell;
-		width: 1%;
-	}
-	li:first-child {
-	 text-align: left;
-	}
-	li:last-child {
-	 text-align: right;
-	}
+.content {
+  margin: auto;
+	max-width: 70em;
 }
