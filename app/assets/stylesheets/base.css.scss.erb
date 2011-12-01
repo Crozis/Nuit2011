@@ -1,3 +1,5 @@
+$dark_red : #ac006a;
+$light_red: #f90099;
 /*------------------------------------------------------------------------------------------ MIXINS --------------------*/
 
 @mixin radius($radius) {
@@ -96,4 +98,138 @@
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;
+}
+
+
+
+.field input,.field textarea {
+  border: 1px solid #999;
+  padding: 5px;
+  @include radius(2px);
+  @include bshadow-in(0, 0, 6px, rgba(40,40,40,0.3));
+}
+
+.field {
+  display: table-row;
+  label {
+    display: table-cell;
+    text-align: right;
+    padding-right: 5px;
+  }
+  label.top {
+    vertical-align: top;
+  }
+  input, textarea {
+    border: 1px solid #999;
+    padding: 5px;
+    @include radius(2px);
+    @include bshadow-in(0, 0, 6px, rgba(40,40,40,0.3));
+    width: 97%;
+  }
+}
+
+button, input[type=submit] {
+  @include radius(0.2em);
+  @include gradient(#f3f3f3, #ececec);
+  display: inline-block;
+  padding: 5px 10px 6px 10px;
+  text-shadow: 1px 1px 1px rgba(255,255,255,1);
+  border: 1px solid #999;
+  cursor: pointer;
+  min-width: 99%;
+}
+button:hover, input[type=submit]:hover {
+  border: 1px solid $dark_red;
+  color: white;
+  @include gradient($light_red, $dark_red);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+}
+button[disabled], button[disabled] {
+  @include radius(0.2em);
+  @include gradient(#f3f3f3, #ececec);
+  display: inline-block;
+  padding: 5px 10px 6px 10px;
+  text-shadow: 1px 1px 1px rgba(255,255,255,1);
+  border: 1px solid #D4D4D4;
+  cursor: pointer;
+}
+
+
+h1, h2 ,h3 ,h4 ,h5 {
+  text-shadow: rgba(255, 255, 255, 0.796875) 0px 1px 0px;  
+  text-align: center;
+  margin-top: 2em;
+}
+
+form {
+  border: 3px solid #ac006a;
+  padding: 1%;
+  @include radius(0.3em);
+  display: table;
+  margin: auto;
+}
+
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+header {
+  .top {
+    display: table;
+    h1#logo {
+      display: table-cell;
+      vertical-align: middle;
+      text-align:center;
+      font-size: 4em;
+      font-weight: normal;
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+	img {
+		width: 10em;
+      display: table-cell;
+	}
+}
+
+nav ul {
+	display			: table;
+	padding-left: 0;
+	width: 100%;
+	li {
+    a {
+      color: #ac006a;
+      font-size: 1.1em;
+      display: inline-block;
+      text-align: center;
+      text-decoration: none;
+      border-bottom: 1px solid #ac006a;
+      //border-top: 1px solid #AAA;
+	   	padding-bottom: 0.5em;
+  		padding-top: 0.5em;
+      width: 98%;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-shadow: rgba(255, 255, 255, 0.796875) 0px 1px 0px;
+      @include bshadow-out(0px, 1px, 0, #EEE);
+    }
+    a:hover {
+      background-color: transparent;
+      border-bottom: 1px solid #f90099;
+      //border-top: 1px solid #777;
+      color: #f90099;
+      cursor: pointer;
+    }
+		text-align			: center;
+		display					: table-cell;
+		width: 1%;
+	}
+	li:first-child {
+	 text-align: left;
+	}
+	li:last-child {
+	 text-align: right;
+	}
 }
