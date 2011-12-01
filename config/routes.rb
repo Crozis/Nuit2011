@@ -2,7 +2,6 @@ Nuit2011::Application.routes.draw do
   resources :events
 
   get "home/index"
-
   devise_for :users
   root :to => "home#index"
 
