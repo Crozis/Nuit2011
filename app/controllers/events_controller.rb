@@ -1,4 +1,15 @@
 class EventsController < ApplicationController
+  
+  def subscribe
+    @event = Event.find(params[:event_id])
+    current_user.events << @event
+    respond_to do |format|
+      Budget.create(:user => current_user, :event_id => @event.id, :amount => 0)
+      format.html { redirect_to @event }
+      format.json { render json: @event }
+    end
+  end
+
   # GET /events
   # GET /events.json
   def index
@@ -13,7 +24,7 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @event = Event.find(params[:id])
-
+    @current_user_budget = current_user.event_budget(@event)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @event }
@@ -39,11 +50,11 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(params[:event])
-    Budget.create(:user => current_user, :event => @event, :amount => 0)
-    
+    @event.users << current_user
     UserMailer.send_email(current_user).deliver
     respond_to do |format|
       if @event.save
+        Budget.create(:user => current_user, :event_id => @event.id, :amount => 0)
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render json: @event, status: :created, location: @event }
       else

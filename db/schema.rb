@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111201193344) do
+ActiveRecord::Schema.define(:version => 20111201214236) do
 
   create_table "budgets", :force => true do |t|
     t.integer  "user_id"
@@ -28,6 +28,11 @@ ActiveRecord::Schema.define(:version => 20111201193344) do
     t.date     "due_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "events_users", :id => false, :force => true do |t|
+    t.integer "event_id"
+    t.integer "user_id"
   end
 
   create_table "users", :force => true do |t|

@@ -1,5 +1,8 @@
 Nuit2011::Application.routes.draw do
-  resources :events
+  resources :events do
+    get 'subscribe'
+  end
+  resources :budgets
 
   get "home/index"
 

@@ -3,7 +3,6 @@ class BudgetsController < ApplicationController
   # GET /budgets.json
   def index
     @budgets = Budget.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @budgets }
@@ -41,11 +40,11 @@ class BudgetsController < ApplicationController
   # POST /budgets.json
   def create
     @budget = Budget.new(params[:budget])
-
+    @event = Event.find(params[:event_id])
     respond_to do |format|
       if @budget.save
-        format.html { redirect_to @budget, notice: 'Budget was successfully created.' }
-        format.json { render json: @budget, status: :created, location: @budget }
+        format.html { redirect_to @event }
+        format.json { render json: @event, status: :created, location: @budget }
       else
         format.html { render action: "new" }
         format.json { render json: @budget.errors, status: :unprocessable_entity }
@@ -57,10 +56,12 @@ class BudgetsController < ApplicationController
   # PUT /budgets/1.json
   def update
     @budget = Budget.find(params[:id])
-
+    @budget.user = current_user
+    @event = Event.find(@budget.event_id)
+  
     respond_to do |format|
       if @budget.update_attributes(params[:budget])
-        format.html { redirect_to @budget, notice: 'Budget was successfully updated.' }
+        format.html { redirect_to @event }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

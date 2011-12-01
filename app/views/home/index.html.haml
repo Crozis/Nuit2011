@@ -7,7 +7,7 @@
     %ul
       %li
         - if current_user
-          = button_to "Se déconnecter", destroy_user_session_path, :method => :delete
+          = link_to "Se déconnecter", destroy_user_session_path, :method => :delete
         - else
           = link_to "Se connecter", new_user_session_path 
           = link_to "S'inscrire", new_user_registration_path
