@@ -1,0 +1,35 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+	margin: auto;
+}
+
+.mast {
+	display: table;
+	margin: auto;
+}
+
+.inner {
+	width: 90%;
+	margin: auto;
+}
+
+h1#logo {
+	display: table-cell;
+	img {
+		width: 3em;
+	}
+}
+
+ul.nav {
+	display			: table;
+	padding-left: 0;
+	width: 100%;
+	li {
+		text-align			: center;
+		display					: table-cell;
+		background-color: red;
+	}
+}
