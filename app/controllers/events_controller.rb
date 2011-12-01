@@ -1,5 +1,10 @@
 class EventsController < ApplicationController
   
+  def invite 
+    @event = Event.find(params[:event_id])
+    UserMailer.send_email(params[:email], @event.victim, @event.id).deliver
+  end
+  
   def subscribe
     @event = Event.find(params[:event_id])
     current_user.events << @event
@@ -51,7 +56,6 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(params[:event])
     @event.users << current_user
-    UserMailer.send_email(current_user).deliver
     respond_to do |format|
       if @event.save
         Budget.create(:user => current_user, :event_id => @event.id, :amount => 0)

@@ -11,11 +11,17 @@
   .field
     = f.label :description
     = f.text_area :description
-  .field#event_date
-    = f.label :due_date
-    = f.date_select :due_date
+
+  %p 
+    Date: 
+    %input#datepicker{:type => 'text', :name => 'event[due_date]'}
 
     = f.hidden_field :creator_id, :value => current_user.id
 
   .actions
     = f.submit 'Save'
+
+:javascript
+  $(document).ready(function() {
+    $("#datepicker").datepicker();
+  });
