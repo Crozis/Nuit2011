@@ -15,6 +15,9 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+group :development do
+  gem 'ruby-debug19', :require => 'ruby-debug'
+end
 
 
 # To use ActiveModel has_secure_password
@@ -27,7 +30,7 @@ end
 # gem 'capistrano'
 
 # To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+
 
 gem "devise"
 gem "haml", ">= 3.0.0"

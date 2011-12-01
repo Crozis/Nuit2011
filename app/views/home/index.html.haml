@@ -6,5 +6,12 @@
         On The Rails Again
     %ul
       %li
-        = link_to "Sign in", user_registration_path
-        = link_to "Sign up", new_user_registration_path
+        - if current_user
+          = button_to "Se déconnecter", destroy_user_session_path, :method => :delete
+        - else
+          = link_to "Se connecter", new_user_session_path 
+          = link_to "S'inscrire", new_user_registration_path
+    %p
+      - if current_user
+        = link_to "Créer un évènement", new_event_path
+    
