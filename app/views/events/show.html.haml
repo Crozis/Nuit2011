@@ -3,9 +3,21 @@
 %p
   %b Creator:
   = @event.creator_id
-%p
-  Votre budget
-  = current_user.event_budget(@event)
+
+- if current_user.created_events.include?(@event) or current_user.subscribed_events.include?(@event)
+  = form_for @current_user_budget do |f|
+    .field
+      = f.label "Ton budget"
+      = f.text_field :amount, :value => @current_user_budget.amount
+    
+      = f.hidden_field :event_id, :value => @event.id
+
+    .actions
+      = f.submit 'Changer'
+
+- else
+  = link_to "S'inscrire à l'évènement", event_subscribe_path(@event)
+
 %p
   %b Budget total:
   = @event.budget

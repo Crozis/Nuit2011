@@ -40,3 +40,4 @@ gem "rspec-rails", ">= 2.0.1", :group => [:development, :test]
 gem "heroku"
 
 gem 'execjs'
+gem 'jquery-rails'
