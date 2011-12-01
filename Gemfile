@@ -36,5 +36,3 @@ gem "rspec-rails", ">= 2.0.1", :group => [:development, :test]
 gem "heroku"
 
 gem 'execjs'
-gem 'sass-rails', '~> 3.1.4'
-gem 'compass'
