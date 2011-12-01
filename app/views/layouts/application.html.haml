@@ -8,14 +8,15 @@
 
   %body
     %header
-      %h1#logo
-        = image_tag "Logo.png"
-        Cado
+      .top
+        = image_tag "gift.png"
+        %h1#logo
+          Awesome Gift
       %nav
         %ul          
           - if current_user
             %li
-              = button_to "Se déconnecter", destroy_user_session_path, :method => :delete
+              = link_to "Se déconnecter", destroy_user_session_path, :method => :delete
           - else
             %li
               = link_to "Se connecter", new_user_session_path 

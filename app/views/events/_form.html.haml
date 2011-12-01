@@ -6,13 +6,13 @@
         - @event.errors.full_messages.each do |msg|
           %li= msg
   .field
-    = f.label :victim_name
+    = f.label :victim_name, "Nom du destinataire du cadeau"
     = f.text_field :victim
   .field
-    = f.label :description
-    = f.text_area :description
+    = f.label :description, :class => 'top'
+    = f.text_area :description, :cols => 5, :rows => 5
   .field
-    = f.label :due_date
+    = f.label :due_date, "Trouver le cadeau avant le…"
     = f.date_select :due_date
 
     = f.hidden_field :creator_id, :value => current_user.id
