@@ -65,3 +65,15 @@
       \-
       = product.price 
       €
+      - @idea = GiftIdeas.where(:product_id => product.id, :event_id => @event.id).first
+      - @vote = Votes.where(:idea_id => @idea.id, :user_id => current_user.id).first
+      - if !@vote.nil? and @vote.vote == 0
+        = link_to '+', event_vote_up_path(@event, :product_id => product.id)
+      - elsif !@vote.nil? and @vote.vote == 1
+        = link_to '-', event_vote_down_path(@event, :product_id => product.id)
+      - else
+        = link_to '+', event_vote_up_path(@event, :product_id => product.id)
+        = link_to '-', event_vote_down_path(@event, :product_id => product.id)
+      Score 
+      = Votes.where(:idea_id => @idea.id, :vote => 1).count - Votes.where(:idea_id => @idea.id, :vote => 0).count
+      

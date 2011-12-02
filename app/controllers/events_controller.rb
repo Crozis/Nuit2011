@@ -1,5 +1,35 @@
 class EventsController < ApplicationController
   
+  def vote_up
+    @event = Event.find(params[:event_id])
+    idea = GiftIdeas.where(:product_id => params[:product_id], :event_id => @event.id).first
+    vote = Votes.new
+    vote.user_id = current_user.id
+    vote.idea_id = idea.id
+    vote.vote = 1
+    vote.save
+    
+    respond_to do |format|
+      format.html { redirect_to @event }
+      format.json { render json: @event }
+    end
+  end
+
+  def vote_down
+    @event = Event.find(params[:event_id])
+    idea = GiftIdeas.where(:product_id => params[:product_id], :event_id => @event.id).first
+    vote = Votes.new
+    vote.user_id = current_user.id
+    vote.idea_id = idea.id
+    vote.vote = 0
+    vote.save
+    
+    respond_to do |format|
+      format.html { redirect_to @event }
+      format.json { render json: @event }
+    end
+  end
+  
   def add_product
     g = GiftIdeas.new
     g.date = Date.today
