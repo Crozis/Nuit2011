@@ -47,6 +47,20 @@ ul.events {
   }
 }
 
+p.alert, p.notice {
+  border: 2px solid red;
+  text-align: center;
+  display: block;
+  width: auto;
+  @include radius(0.3em); 
+  background-color: #ffe0f3;
+  padding: 0.5em;
+}
+
+p.notice {
+  background-color: #d1fcc3;
+  border: 2px solid green;
+}
 
 @media screen and (max-width: 1300px) {
   section form {
@@ -108,7 +122,7 @@ ul.events {
             @include radius(0.2em);
             @include gradient(#f3f3f3, #ececec);
             display: table-cell;
-            padding: 5px 10px 6px 10px;
+            padding: 5px;
             text-shadow: 1px 1px 1px rgba(255,255,255,1);
             border: 1px solid #999;
             cursor: pointer;

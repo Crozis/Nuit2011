@@ -1,6 +1,8 @@
 !!!
 %html
   %head
+    %meta{ :name => "viewport", :content => "user-scalable=yes, width=device-width"}
+    
     %title Nuit2011
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
@@ -30,6 +32,8 @@
                 = link_to "Mes évènements", events_path
                 
       %section
-        %p.notice= notice
-        %p.alert= alert
+        -if notice
+          %p.notice= notice
+        -if alert
+          %p.alert= alert
         = yield
