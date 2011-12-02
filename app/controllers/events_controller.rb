@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   
   def invite 
     @event = Event.find(params[:event_id])
-    UserMailer.send_email(params[:email], @event.victim, @event.id).deliver
+    UserMailer.send_email(params[:email], @event.victim_name, @event.id).deliver
     respond_to do |format|
       format.html { redirect_to @event }
       format.json { render json: @event }
