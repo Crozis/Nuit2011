@@ -115,8 +115,10 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = Event.new(params[:event])
-    @event.users << current_user
+    @event = Event.new
+    @event.victim_name = params[:event][:victim_name]
+    @event.description = params[:event][:description]
+    @event.creator = current_user
     respond_to do |format|
       if @event.save
         Budget.create(:user => current_user, :event_id => @event.id, :amount => 0)
