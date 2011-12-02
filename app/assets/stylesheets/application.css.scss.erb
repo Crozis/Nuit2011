@@ -47,6 +47,37 @@ ul.events {
   }
 }
 
+p.alert, p.notice {
+  border: 2px solid red;
+  text-align: center;
+  display: block;
+  width: auto;
+  @include radius(0.3em); 
+  background-color: #ffe0f3;
+  padding: 0.5em;
+}
+
+p.notice {
+  background-color: #d1fcc3;
+  border: 2px solid green;
+}
+
+.box_left, .box_right {
+  display: table-cell;
+  border: 3px solid $dark_red;
+  @include radius(0.3em);
+  padding: 2%;
+  form {
+    border: none;
+  }
+}
+
+.box_left_right {
+  display: table;
+  border-spacing: 5px;
+  margin: auto;
+  width: 60%; 
+}
 
 @media screen and (max-width: 1300px) {
   section form {
@@ -71,14 +102,29 @@ ul.events {
         display: none;
       }
     }
-    nav ul li{
-      display: block;
-      width: auto;
-    }
+     nav {
+        ul {
+          display: block;
+          li {
+            padding-top: 1em;
+            padding-bottom: 1em;
+            display: block;
+            width: auto;         
+          }
+        }
+      }
+
     section {
      display: table-cell;
      width: 80%;
     }
+  }
+  
+  .box_left_right {
+    display: table;
+    border-spacing: 5px;
+    margin: auto;
+    width: 80%; 
   }
 }
 
@@ -108,11 +154,13 @@ ul.events {
             @include radius(0.2em);
             @include gradient(#f3f3f3, #ececec);
             display: table-cell;
-            padding: 5px 10px 6px 10px;
+            font-size: 0.8em;
+            vertical-align: middle;
+            padding: 3px;
             text-shadow: 1px 1px 1px rgba(255,255,255,1);
             border: 1px solid #999;
             cursor: pointer;
-            width: 45%;
+            width: 30%;
             a {
               border: none;
             }
@@ -132,5 +180,25 @@ ul.events {
         width: 94%;
       }
     }
+    
+    .box_left, .box_right {
+      display: block;
+    }
+    .box_right {
+      margin-top: 2%;
+    }
+    
+    .box_left_right {
+      display: block;
+      border-spacing: 0;
+      margin: auto;
+      width: 99%%; 
+    }
+  }
+}
+
+.no_border {
+  form {
+    border: none;
   }
 }

@@ -1,60 +1,63 @@
-%p#notice= notice
-
-%p
-  %b Creator:
-  = @event.creator_id
-
-- if current_user.created_events.include?(@event) or current_user.subscribed_events.include?(@event)
-  = form_for @current_user_budget do |f|
-    .field
-      = f.label "Ton budget"
-      = f.text_field :amount, :value => @current_user_budget.amount
+.box_left_right
+  .box_left
+    %h2 
+      Évènement crée par 
+      = @event.creator.firstname
     
-      = f.hidden_field :event_id, :value => @event.id
-
-    .actions
-      = f.submit 'Changer'
-
-- else
-  = link_to "S'inscrire à l'évènement", event_subscribe_path(@event)
-
-%p
-  %b Budget total:
-  = @event.budget
-
-%p
-  %b Victim:
-  = @event.victim_name
-%p
-  %b Description:
-  = @event.description
-%p
-  %b Due date:
-  = @event.due_date
-
-- if current_user.created_events.include?(@event) or current_user.subscribed_events.include?(@event)
-  %h2 Inviter des amis
-  = form_tag event_invite_path(@event), :method => "post" do
-    = label_tag :email, "Email"
-    = text_field_tag :email
-
-    = submit_tag "Envoyer le mail"
-
-%h4 Créateur
-= @event.creator.firstname
-%h4 Liste des participants
-- @event.users.each do |user|
-  = user.firstname
-
-
+    %p
+      %b Budget total:
+      = @event.budget
+    
+    %p
+      %b Victim:
+      = @event.victim_name
+    %p
+      %b Description:
+      = @event.description
+    %p
+      %b Due date:
+      = @event.due_date
+      
+    
+    %h4 Créateur
+    = @event.creator.firstname
+    %h4 Liste des participants
+    - @event.users.each do |user|
+      = user.firstname
+  
+  
+  .box_right
+    - if current_user.created_events.include?(@event) or current_user.subscribed_events.include?(@event)
+      %h3 Ton budget
+      = form_for @current_user_budget do |f|
+        .field
+          = f.text_field :amount, :value => @current_user_budget.amount
+        
+          = f.hidden_field :event_id, :value => @event.id
+    
+        .actions
+          = f.submit 'Changer'
+    
+    - else
+      = link_to "S'inscrire à l'évènement", event_subscribe_path(@event)
+      
+    - if current_user.created_events.include?(@event) or current_user.subscribed_events.include?(@event)
+      %h3 Inviter des amis
+      = form_tag event_invite_path(@event), :method => "post" do
+        .field
+          = label_tag :email, "Email"
+          = text_field_tag :email
+        .actions
+          = submit_tag "Envoyer le mail"
 - if current_user.created_events.include?(@event) or current_user.subscribed_events.include?(@event)
   = form_for @search do |f|
     = f.label :name_or_description_contains
     = f.text_field :name_or_description_contains
-    
+
     = hidden_field_tag :event_id, @event.id
-    
+
     = f.submit
+
 %ul
   - @products.each do |product|
     %li
