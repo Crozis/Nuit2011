@@ -5,7 +5,11 @@ class ProductsController < ApplicationController
     @search = Product.search(params[:search])
     @event = Event.find(params[:event_id])
     @search = Product.search(params[:search])
-    @products = @search.all
+    @p = @search.all
+    @products = []
+    @p.each do |product|
+      @products << product unless product.price > (@event.budget * 1.1)
+    end
 
     respond_to do |format|
       format.html # index.html.erb

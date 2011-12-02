@@ -6,7 +6,8 @@ gem 'rails', '3.1.1'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 # gem 'pg'
-gem 'mysql2'
+#gem 'mysql2'
+gem 'mysql', '~> 2.8.1'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -43,3 +44,5 @@ gem "heroku"
 gem 'execjs'
 gem 'jquery-rails'
 gem 'meta_search'  
+
+gem 'heroku_external_db'
