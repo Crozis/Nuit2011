@@ -5,29 +5,20 @@
     
     = hidden_field_tag :event_id, @event.id
     
-    = f.submit
+    = f.submit "Chercher"
 
-%table
-  %tr
-    %th Name
-    %th Description
-    %th Price
-    %th Image url big
-    %th Image url small
-    %th Deeplink
-    %th
-    %th
-    %th
-
+%ul
   - @products.each do |product|
-    %tr
-      %td= product.name
-      %td= product.description
-      %td= product.price
-      %td= product.image_url_big
-      %td= product.image_url_small
-      %td= product.deeplink
-      %td= link_to "Ajouter à la liste", event_add_product_path(@event, :product_id => product.id)
+    %li
+      %h3
+        = product.name
+        \-
+        = product.price
+        €
+        = link_to "Ajouter à la liste", event_add_product_path(@event, :product_id => product.id)
+      = image_tag product.imageUrlSmall, :width => 100
+      = product.description
+    %hr/
 
 %br
 
