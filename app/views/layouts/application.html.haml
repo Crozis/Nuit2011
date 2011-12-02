@@ -26,6 +26,9 @@
             - if current_user
               %li
                 = link_to "Créer un évènement", new_event_path
+              %li
+                = link_to "Mes évènements", events_path
+                
       %section
         %p.notice= notice
         %p.alert= alert

@@ -112,8 +112,9 @@ $light_red: #f90099;
 .field {
   display: table-row;
   label {
-    display: table-cell;
-    text-align: right;
+    display: block;
+    text-align: left;
+    font-weight: bold;
     padding-right: 5px;
   }
   label.top {
@@ -126,9 +127,15 @@ $light_red: #f90099;
     @include bshadow-in(0, 0, 6px, rgba(40,40,40,0.3));
     width: 97%;
   }
+  p {
+    font-weight: bold;
+    input {
+      display: block;
+    }
+  }
 }
 
-button, input[type=submit] {
+button, input[type=submit], .button {
   @include radius(0.2em);
   @include gradient(#f3f3f3, #ececec);
   display: inline-block;
@@ -138,7 +145,7 @@ button, input[type=submit] {
   cursor: pointer;
   min-width: 99%;
 }
-button:hover, input[type=submit]:hover {
+button:hover, input[type=submit]:hover, .button:hover {
   border: 1px solid $dark_red;
   color: white;
   @include gradient($light_red, $dark_red);
@@ -152,6 +159,11 @@ button[disabled], button[disabled] {
   text-shadow: 1px 1px 1px rgba(255,255,255,1);
   border: 1px solid #D4D4D4;
   cursor: pointer;
+}
+
+a.button {
+  text-decoration: none;
+  text-align: center;
 }
 
 

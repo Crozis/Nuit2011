@@ -1,14 +1,17 @@
+<!-- encoding : utf-8 -->
 <!DOCTYPE html>
 <html>
   <head>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
-    <h1>Welcome to example.com, <%= @user.first_name %></h1>
+    <h1>Cadeau pour <%= @victim %></h1>
 
     <p>
-      To login to the site, just follow this link: <%= @url %>.
+      Salut ! J'organise de faire un cadeau à <%= @victim %> ! Ca te tente de venir participer avec moi ?
+    <p>
     </p>
-    <p>Thanks for joining and have a great day!</p>
+      Si ça te tente, viens t'inscrire à <%= link_to "l'évènement", event_url(@event_id) %>.
+    </p>
   </body>
 </html>

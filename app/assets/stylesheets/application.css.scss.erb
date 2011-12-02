@@ -32,6 +32,28 @@ body {
   display: none;
 }
 
+ul.events {
+  width: auto;
+  list-style: none;
+  li {
+    border: 2px solid #ac006a;
+    padding: 1%;
+    @include radius(0.3em); 
+    p {
+      margin: 0;
+      margin-bottom: 0.3em;
+    }
+
+  }
+}
+
+
+@media screen and (max-width: 1300px) {
+  section form {
+    padding: 2%;
+  }
+}
+
 @media screen and (max-width: 1300px) and (min-width: 600px){
   .content {
     display: table;
@@ -103,6 +125,12 @@ body {
     }
     .content section {
       display: block;
+    }
+    
+    .field {
+      input, textarea {
+        width: 94%;
+      }
     }
   }
 }
