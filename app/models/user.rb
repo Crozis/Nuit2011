@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :events
   has_many :budgets
 
+  has_many :gift_ideas
+  has_many :votes
+
   def event_budget(event)
     Budget.where(:event_id => event.id, :user_id => self).first
   end

@@ -1,5 +1,20 @@
 class EventsController < ApplicationController
   
+  def add_product
+    g = GiftIdeas.new
+    g.date = Date.today
+    g.user_id = current_user.id
+    g.product_id = Product.find(params[:product_id]).id
+    @event = Event.find(params[:event_id])
+    g.event_id = @event.id
+    g.save
+    respond_to do |format|
+      format.html { redirect_to @event }
+      format.json { render json: @event }
+    end
+
+  end
+  
   def invite 
     @event = Event.find(params[:event_id])
     UserMailer.send_email(params[:email], @event.victim_name, @event.id).deliver
@@ -38,8 +53,13 @@ class EventsController < ApplicationController
         format.json { render json: @event }
       end
     else
+      
       @event = Event.find(params[:id])
+      @products = GiftIdeas.where(:event_id => @event.id).collect{|gift_idea| Product.find(gift_idea.product_id) }
       @current_user_budget = current_user.event_budget(@event)
+
+      @search = Product.search(params[:search])
+
       respond_to do |format|
         format.html # show.html.erb
         format.json { render json: @event }

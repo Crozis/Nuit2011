@@ -1,4 +1,11 @@
-%h1 Listing products
+- if current_user.created_events.include?(@event) or current_user.subscribed_events.include?(@event)
+  = form_for @search do |f|
+    = f.label :name_or_description_contains
+    = f.text_field :name_or_description_contains
+    
+    = hidden_field_tag :event_id, @event.id
+    
+    = f.submit
 
 %table
   %tr
@@ -20,9 +27,7 @@
       %td= product.image_url_big
       %td= product.image_url_small
       %td= product.deeplink
-      %td= link_to 'Show', product
-      %td= link_to 'Edit', edit_product_path(product)
-      %td= link_to 'Destroy', product, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to "Ajouter à la liste", event_add_product_path(@event, :product_id => product.id)
 
 %br
 

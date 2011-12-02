@@ -49,3 +49,19 @@
           = text_field_tag :email
         .actions
           = submit_tag "Envoyer le mail"
+- if current_user.created_events.include?(@event) or current_user.subscribed_events.include?(@event)
+  = form_for @search do |f|
+    = f.label :name_or_description_contains
+    = f.text_field :name_or_description_contains
+
+    = hidden_field_tag :event_id, @event.id
+
+    = f.submit
+
+%ul
+  - @products.each do |product|
+    %li
+      = product.name
+      \-
+      = product.price 
+      €
