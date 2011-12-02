@@ -5,6 +5,8 @@ Nuit2011::Application.routes.draw do
     get 'subscribe'
     post 'invite'
     get 'add_product'
+    get 'vote_down'
+    get 'vote_up'
   end
   resources :budgets
 
