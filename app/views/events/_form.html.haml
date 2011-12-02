@@ -7,7 +7,7 @@
           %li= msg
   .field
     = f.label :victim_name, "Nom du destinataire du cadeau"
-    = f.text_field :victim
+    = f.text_field :victim_name
   .field
     = f.label :description
     = f.text_area :description
@@ -19,7 +19,7 @@
     = f.hidden_field :creator_id, :value => current_user.id
 
   .actions
-    = f.submit 'Save'
+    = f.submit "Créer l'évènement"
 
 :javascript
   $(document).ready(function() {

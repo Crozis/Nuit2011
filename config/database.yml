@@ -1,26 +1,46 @@
 development:
-  host: localhost
-  adapter: postgresql
-  encoding: unicode
-  database: nuit2011_development
+  host: skimeet.net
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: skimeetn_nuit2011
   pool: 5
-  username: admin
-  password: password
-
-test:
-  host: localhost
-  adapter: postgresql
-  encoding: unicode
-  database: nuit2011_test
-  pool: 5
-  username: admin
-  password: password
+  username: skimeetn_ogc
+  password: pornytech2011
 
 production:
-  host: localhost
-  adapter: postgresql
-  encoding: unicode
-  database: nuit2011_production
+  host: skimeet.net
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: skimeetn_nuit2011
   pool: 5
-  username: admin
-  password: password
+  username: skimeetn_ogc
+  password: pornytech2011
+
+# development:
+#   host: localhost
+#   adapter: postgresql
+#   encoding: unicode
+#   database: nuit2011_development
+#   pool: 5
+#   username: admin
+#   password: password
+
+# test:
+#   host: localhost
+#   adapter: postgresql
+#   encoding: unicode
+#   database: nuit2011_test
+#   pool: 5
+#   username: admin
+#   password: password
+# 
+# production:
+#   host: localhost
+#   adapter: postgresql
+#   encoding: unicode
+#   database: nuit2011_production
+#   pool: 5
+#   username: admin
+#   password: password

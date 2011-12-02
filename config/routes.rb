@@ -1,4 +1,6 @@
 Nuit2011::Application.routes.draw do
+  resources :products
+
   resources :events do
     get 'subscribe'
     post 'invite'
