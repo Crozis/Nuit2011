@@ -31,7 +31,7 @@
         - @products.each do |product|
           %tr
             %td.img
-              %a{ :href => "#{product.deeplink}"} Lien vers l'article
+              %img{ :src => "#{product.imageUrlSmall}"}
             %td.product_name
               = product.name
             %td.product_price
