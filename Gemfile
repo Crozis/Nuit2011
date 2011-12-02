@@ -42,3 +42,4 @@ gem "heroku"
 
 gem 'execjs'
 gem 'jquery-rails'
+gem 'meta_search'  
