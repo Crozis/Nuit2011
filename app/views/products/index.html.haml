@@ -1,16 +1,19 @@
 - if current_user.created_events.include?(@event) or current_user.subscribed_events.include?(@event)
   = form_for @search do |f|
-    = f.label :name_or_description_contains
-    = f.text_field :name_or_description_contains
+    = f.text_field :name_or_description_contains, :placeholder => 'Tapez une idée de cadeau'
     
     = hidden_field_tag :event_id, @event.id
     
     = f.submit "Chercher"
 
+-if !@products.empty?
+  %p
+    Les produits affichés rentre dans le budget de l'évènement.
+-if @products.empty?
+  %p
+    Aucun produit trouvés avec le budget actuel.
 %p
-  Les produits affichés rentre dans le budget de l'évènement.
-%p
-  = link_to "Retour à l'évènement", event_path(@event)
+  = link_to "Retour à l'évènement", event_path(@event), :class => "button"
 %ul
   - @products.each do |product|
     %li
@@ -26,4 +29,3 @@
 
 %br
 
-= link_to 'New Product', new_product_path
