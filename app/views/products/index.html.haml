@@ -7,6 +7,10 @@
     
     = f.submit "Chercher"
 
+%p
+  Les produits affichés rentre dans le budget de l'évènement.
+%p
+  = link_to "Retour à l'évènement", event_path(@event)
 %ul
   - @products.each do |product|
     %li
