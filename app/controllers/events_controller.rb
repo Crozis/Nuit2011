@@ -3,6 +3,10 @@ class EventsController < ApplicationController
   def invite 
     @event = Event.find(params[:event_id])
     UserMailer.send_email(params[:email], @event.victim, @event.id).deliver
+    respond_to do |format|
+      format.html { redirect_to @event }
+      format.json { render json: @event }
+    end
   end
   
   def subscribe
@@ -28,11 +32,18 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @event = Event.find(params[:id])
-    @current_user_budget = current_user.event_budget(@event)
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @event }
+    if !current_user
+      respond_to do |format|
+        format.html { redirect_to home_index_path }
+        format.json { render json: @event }
+      end
+    else
+      @event = Event.find(params[:id])
+      @current_user_budget = current_user.event_budget(@event)
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @event }
+      end
     end
   end
 

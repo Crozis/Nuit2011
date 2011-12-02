@@ -41,9 +41,9 @@
     = submit_tag "Envoyer le mail"
 
 %h4 Créateur
-= events.creator.first_name
+= @event.creator.first_name
 %h4 Liste des participants
-- events.users.each do |user|
+- @event.users.each do |user|
   = user.first_name
 
 = link_to 'Back', events_path
