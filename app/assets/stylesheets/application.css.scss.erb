@@ -1,0 +1,108 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require_tree . 
+*/
+@import 'base';
+
+html {
+  background-color: #fff5fb;
+  background-image: url(<%= asset_path 'gift2.png' %>);
+  background-repeat: no-repeat;
+  background-position: 0% 100%;
+  height: 100%;
+}
+
+body {
+  font-size: 1.1em;
+  margin: 0;
+  padding: 0;
+  background-image: url(<%= asset_path 'rag.png' %>);
+  background-repeat: repeat-x;
+}
+
+.content {
+  margin: auto;
+  width: 90%;
+}
+
+#logo_mobile {
+  display: none;
+}
+
+@media screen and (max-width: 1300px) and (min-width: 600px){
+  .content {
+    display: table;
+    header {
+      display: table-cell;
+    }
+    .top {
+      margin: auto;
+      h1#logo {
+        font-size: 2em;
+        display: block;
+        line-height: 1.5em;
+      }
+      img {
+        display: none;
+      }
+    }
+    nav ul li{
+      display: block;
+      width: auto;
+    }
+    section {
+     display: table-cell;
+     width: 80%;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  html {
+    background-image: none;
+    header {
+      .top {
+        margin: auto;
+        h1#logo {
+          font-size: 2em;
+          display: none;
+          line-height: 1.5em;
+          display: block;
+          font-size: 1.5em;
+          margin-top: 0.5em;
+          margin-bottom: 0;
+        }
+        img {
+          display: none;
+        }
+      }
+      nav {
+        ul {
+          display: table;
+          li {
+            @include radius(0.2em);
+            @include gradient(#f3f3f3, #ececec);
+            display: table-cell;
+            padding: 5px 10px 6px 10px;
+            text-shadow: 1px 1px 1px rgba(255,255,255,1);
+            border: 1px solid #999;
+            cursor: pointer;
+            width: 45%;
+            a {
+              border: none;
+            }
+            a:hover {
+              border: none;
+            }
+          }
+        }
+      }
+    }
+    .content section {
+      display: block;
+    }
+  }
+}

@@ -16,5 +16,26 @@ body {
 
 .content {
   margin: auto;
-	max-width: 70em;
+  width: 90%;
+}
+
+@media screen and (max-width: 1300px) {
+  .content {
+    display: table;
+    header {
+      display: table-cell;
+      nav {
+        color: red;
+      }
+    }
+    section {
+     display: table-cell;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  html {
+    background-image: none;
+  }
 }
