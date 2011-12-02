@@ -19,18 +19,17 @@
           %ul          
             - if current_user
               %li
+                = link_to "Créer un évènement", new_event_path
+              %li
+                = link_to "Mes évènements", events_path
+            - if current_user
+              %li
                 = link_to "Déconnexion", destroy_user_session_path, :method => :delete
             - else
               %li
                 = link_to "Connexion", new_user_session_path 
               %li
                 = link_to "S'inscrire", new_user_registration_path
-            - if current_user
-              %li
-                = link_to "Créer un évènement", new_event_path
-              %li
-                = link_to "Mes évènements", events_path
-                
       %section
         -if notice
           %p.notice= notice
