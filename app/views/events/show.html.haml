@@ -24,7 +24,7 @@
 
 %p
   %b Victim:
-  = @event.victim
+  = @event.victim_name
 %p
   %b Description:
   = @event.description
@@ -41,9 +41,9 @@
     = submit_tag "Envoyer le mail"
 
 %h4 Créateur
-= @event.creator.first_name
+= @event.creator.firstname
 %h4 Liste des participants
 - @event.users.each do |user|
-  = user.first_name
+  = user.firstname
 
 = link_to 'Back', events_path

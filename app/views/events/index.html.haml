@@ -1,4 +1,4 @@
-%h1 Listing events
+%h1 Mes évènements
 - @events.each do |event|
   %ul.events
     %li.pack
@@ -7,4 +7,4 @@
       %p= event.due_date
       = link_to 'Show', event, :class => 'button'
 
-= link_to 'New Event', new_event_path
+= link_to 'Nouvel évènement', new_event_path
