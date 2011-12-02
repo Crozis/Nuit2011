@@ -2,9 +2,9 @@
 - @events.each do |event|
   %ul.events
     %li.pack
-      %p= event.victim
+      %p= event.victim_name
       %p= event.description
       %p= event.due_date
       = link_to 'Show', event, :class => 'button'
 
-= link_to 'Nouvel évènement', new_event_path
+= button_to 'Nouvel évènement', new_event_path, :method => :get
