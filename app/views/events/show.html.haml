@@ -1,34 +1,64 @@
 .box_left_right
   .box_left
     %h2 
-      Évènement crée par 
-      = @event.creator.firstname
-    
-    %p
-      %b Budget total:
-      = @event.budget
-    
-    %p
-      %b Victim:
+      Un cadeau pour 
       = @event.victim_name
     %p
-      %b Description:
-      = @event.description
+      = @event.description    
+
     %p
-      %b Due date:
+      %b À trouver avant le
       = @event.due_date
       
     
-    %h4 Créateur
-    = @event.creator.firstname
-    %h4 Liste des participants
-    - @event.users.each do |user|
-      = user.firstname
+    %h4= "Créateur #{@event.creator.firstname}"
+          
+    %h3 Une idée...      
+    - if current_user.created_events.include?(@event) or current_user.subscribed_events.include?(@event)
+
+      = form_for @search do |f|
+        = f.text_field :name_or_description_contains, :placeholder => 'Tapez une idée de cadeau'
+    
+        = hidden_field_tag :event_id, @event.id
+        #search_button
+          = f.submit 'Rechercher'
+          
+    -if !@products.empty?
+      %h3 Les idées cadeaux
+      %table.list_product
+        - @products.each do |product|
+          %tr
+            %td.img= image_tag product.imageUrlSmall
+            %td.product_name
+              = product.name
+            %td.product_price
+              = product.price 
+              €
+            - @idea = GiftIdeas.where(:product_id => product.id, :event_id => @event.id).first
+            - @vote = Votes.where(:idea_id => @idea.id, :user_id => current_user.id).first
+            %td
+              - if !@vote.nil? and @vote.vote == 0
+                = link_to '+', event_vote_up_path(@event, :product_id => product.id), :class => 'plus'
+                %td &nbsp;
+              - elsif !@vote.nil? and @vote.vote == 1
+                = link_to '-', event_vote_down_path(@event, :product_id => product.id), :class => 'moins'
+                %td &nbsp;
+              - else
+                = link_to '+', event_vote_up_path(@event, :product_id => product.id), :class => 'plus'
+                %td= link_to '-', event_vote_down_path(@event, :product_id => product.id), :class => 'moins'
+            %td 
+              - count = Votes.where(:idea_id => @idea.id, :vote => 1).count - Votes.where(:idea_id => @idea.id, :vote => 0).count
+              = pluralize(count, "Vote", "Votes")
   
+
   
   .box_right
     - if current_user.created_events.include?(@event) or current_user.subscribed_events.include?(@event)
-      %h3 Ton budget
+      %h3 Budget
+      
+      %p
+        %b Budget total:
+        = @event.budget
       = form_for @current_user_budget do |f|
         .field
           = f.text_field :amount, :value => @current_user_budget.amount
@@ -49,31 +79,7 @@
           = text_field_tag :email
         .actions
           = submit_tag "Envoyer le mail"
-- if current_user.created_events.include?(@event) or current_user.subscribed_events.include?(@event)
-  = form_for @search do |f|
-    = f.label :name_or_description_contains
-    = f.text_field :name_or_description_contains
-
-    = hidden_field_tag :event_id, @event.id
-
-    = f.submit
-
-%ul
-  - @products.each do |product|
-    %li
-      = product.name
-      \-
-      = product.price 
-      €
-      - @idea = GiftIdeas.where(:product_id => product.id, :event_id => @event.id).first
-      - @vote = Votes.where(:idea_id => @idea.id, :user_id => current_user.id).first
-      - if !@vote.nil? and @vote.vote == 0
-        = link_to '+', event_vote_up_path(@event, :product_id => product.id)
-      - elsif !@vote.nil? and @vote.vote == 1
-        = link_to '-', event_vote_down_path(@event, :product_id => product.id)
-      - else
-        = link_to '+', event_vote_up_path(@event, :product_id => product.id)
-        = link_to '-', event_vote_down_path(@event, :product_id => product.id)
-      Score 
-      = Votes.where(:idea_id => @idea.id, :vote => 1).count - Votes.where(:idea_id => @idea.id, :vote => 0).count
-      
+          
+    %h4 Liste des participants
+    - @event.users.each do |user|
+      = user.firstname

@@ -102,7 +102,7 @@ $light_red: #f90099;
 
 
 
-.field input,.field textarea {
+.field input, .field textarea, #search_name_or_description_contains {
   border: 1px solid #999;
   padding: 5px;
   @include radius(2px);
@@ -171,12 +171,11 @@ a.button {
 
 h1, h2 ,h3 ,h4 ,h5 {
   text-shadow: rgba(255, 255, 255, 0.796875) 0px 1px 0px;  
-  text-align: center;
-  margin-top: 2em;
+  text-align: left;
 }
 
 form {
-  border: 3px solid #ac006a;
+  border: 1px solid #ac006a;
   padding: 1%;
   @include radius(0.3em);
   display: table;
