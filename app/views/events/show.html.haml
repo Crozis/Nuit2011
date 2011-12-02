@@ -49,6 +49,7 @@
           = text_field_tag :email
         .actions
           = submit_tag "Envoyer le mail"
+
 - if current_user.created_events.include?(@event) or current_user.subscribed_events.include?(@event)
   = form_for @search do |f|
     = f.label :name_or_description_contains
